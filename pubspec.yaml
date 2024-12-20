@@ -1,0 +1,57 @@
+name: zen_tsyp_app
+description: "A new Flutter project."
+
+# Prevents accidental publishing to pub.dev
+publish_to: 'none'
+
+# Application versioning
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Core dependencies
+  cupertino_icons: ^1.0.6
+  flutter_3d_controller: ^2.0.2
+  firebase_core: ^3.8.1
+  file_picker: ^8.1.6
+  flutter_dotenv: ^5.2.1
+  http: ^1.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Add 3D asset
+  assets:
+    - assets/humanslayer_4.obj
+    - assets/scene.gltf
+    - assets/woman.glb
+    - assets/wolf.glb
+    - .env
+    - assets/men-shirt.jpg
+    - assets/man-1.jfif
+    - assets/man-2.jfif
+    - assets/man-3.jpg
+    - assets/man-4.jfif
+    - assets/man-6.jfif
+    - assets/woman-shirt.jpg
+    - assets/man-7.jpg
+    - assets/man-9.png
+    - assets/man-8.jpg
+    - assets/woman-1.jpg
+    - assets/woman-2.jfif
+    - assets/woman-3.jfif
+    - assets/woman-4.jfif
+    - assets/woman-5.jpg
+    - assets/woman-6.jpg
+    - assets/woman-7.jpg
+    - assets/woman-8.jfif
