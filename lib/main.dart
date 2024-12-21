@@ -1,19 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:zen_tsyp_app/helpers/auth_wrapper.dart';
 import 'package:zen_tsyp_app/screens/3d_rendring_screen.dart';
 import 'package:zen_tsyp_app/screens/clothing_screens/clothing_screnn.dart';
 import 'package:zen_tsyp_app/screens/clothing_screens/man_cothing_screen.dart';
 import 'package:zen_tsyp_app/screens/face_body_validation_screen.dart';
 import 'package:zen_tsyp_app/screens/item_detials_screen.dart';
-import 'package:zen_tsyp_app/screens/clothing_screens/woman_clothing_screen.dart';
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
+
 
 late FirebaseFirestore firestore;
 late FirebaseAuth auth;
@@ -22,7 +17,7 @@ late FirebaseStorage storage;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-      options: FirebaseOptions(
+      options:const  FirebaseOptions(
         apiKey: 'AIzaSyAIafS8lcMaUwgDmFncdmQqPHXp6BRYIwE',
     appId: '1:22686388340:android:faa6b0f5916bf95c170121',
     messagingSenderId: '22686388340',
@@ -39,7 +34,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,13 +42,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  ClothingScreen(),
+      home:  const ClothingScreen(),
       routes: {
-        ItemDetialsScreen.routeName:(context)=>ItemDetialsScreen(),
-        ManCothingScreen.routeName:(context)=>ManCothingScreen(),
-        FaceBodyValidationScreen.routeName:(context)=>FaceBodyValidationScreen(),
-        ThreeDRenderdingScreen.routeName:(context)=>ThreeDRenderdingScreen(),
-        ClothingScreen.routeName:(context)=>ClothingScreen()
+        ItemDetialsScreen.routeName:(context)=>const ItemDetialsScreen(),
+        ManCothingScreen.routeName:(context)=>const ManCothingScreen(),
+        FaceBodyValidationScreen.routeName:(context)=>const FaceBodyValidationScreen(),
+        ThreeDRenderdingScreen.routeName:(context)=>const ThreeDRenderdingScreen(),
+        ClothingScreen.routeName:(context)=>const ClothingScreen()
       },
     );
   }

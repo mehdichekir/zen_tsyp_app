@@ -4,6 +4,8 @@ import 'package:zen_tsyp_app/screens/face_body_validation_screen.dart';
 
 class ItemDetialsScreen extends StatelessWidget {
   static const routeName ='/item_detials_screen';
+
+  const ItemDetialsScreen({super.key});
   @override
   Widget build(BuildContext context) {
     var passedData= ModalRoute.of(context)!.settings.arguments as Map<String,String>;
@@ -11,7 +13,7 @@ class ItemDetialsScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.of(context).pushReplacementNamed(ManCothingScreen.routeName);
           },
@@ -34,13 +36,13 @@ class ItemDetialsScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               passedData['title']!,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 4),
-            Row(
+            const SizedBox(height: 4),
+            const Row(
               children: [
                 Icon(Icons.star, color: Colors.orange, size: 16),
                 SizedBox(width: 4),
@@ -50,18 +52,18 @@ class ItemDetialsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 8),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 8),
+            const SizedBox(height: 16),
+            const Text(
               'DESCRIPTION:',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               passedData['desrciption']!,
-              style: TextStyle(color: Colors.grey),
+              style: const TextStyle(color: Colors.grey),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -71,7 +73,7 @@ class ItemDetialsScreen extends StatelessWidget {
                   foregroundColor: Colors.white,
                   minimumSize: const Size(240, 60),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0), // Rectangle shape with rounded corners
+                    borderRadius: BorderRadius.circular(8.0), 
             ),
                 ),
                     onPressed: (){

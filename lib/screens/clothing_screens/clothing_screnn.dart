@@ -19,7 +19,7 @@ class ClothingScreen extends StatelessWidget {
           ),
           centerTitle: true,
           bottom: const PreferredSize(
-            preferredSize: Size.fromHeight(50.0), // Adjust height of TabBar
+            preferredSize: Size.fromHeight(50.0), 
             child: TabBar(
               labelColor: Colors.black,
               indicatorColor: Colors.deepOrange,

@@ -133,7 +133,7 @@ class _AuthFormState extends State<AuthForm> {
                       },
                     ),
                     if(!isLogin)
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                   TextFormField(

@@ -12,7 +12,7 @@ import 'package:share_plus/share_plus.dart';
 class ThreeDRenderdingScreen extends StatefulWidget {
   static const routeName = '3d_screen';
 
-  ThreeDRenderdingScreen({
+  const ThreeDRenderdingScreen({
     Key? key,
   }) : super(key: key);
 
@@ -45,22 +45,19 @@ Future<void> saveAndShare( Uint8List bytes)async{
 Widget flutter3D() {
   return Flutter3DViewer(
                       onProgress: (progressValue) {
-                        print(progressValue);
                         if (progressValue == 1.0) {
                           setState(() {
                             isLoading = false;
                           });
                         }
-                        return SizedBox.shrink();
+                        return const SizedBox.shrink();
                       },
                       onLoad: (modelAddress) {
-                        print('Model address = $modelAddress');
                         setState(() {
                           isLoading = false;
                         });
                       },
                       onError: (error) {
-                        print('Error = $error');
                         setState(() {
                           isLoading = false;
                         });
@@ -86,27 +83,24 @@ Widget flutter3D() {
                 if (asset.contains('.obj'))
                   Expanded(
                     child: Flutter3DViewer.obj(
-                      scale: 1.0, // Adjust scale for .obj model
+                      scale: 1.0, 
                       cameraX: 0,
                       cameraY: 0,
                       cameraZ: 10,
                       onProgress: (progressValue) {
-                        print(progressValue);
                         if (progressValue == 1.0) {
                           setState(() {
                             isLoading = false;
                           });
                         }
-                        return SizedBox.shrink();
+                        return const SizedBox.shrink();
                       },
                       onLoad: (modelAddress) {
-                        print('Model address = $modelAddress');
                         setState(() {
                           isLoading = false;
                         });
                       },
                       onError: (error) {
-                        print('Error = $error');
                         setState(() {
                           isLoading = false;
                         });
@@ -120,22 +114,19 @@ Widget flutter3D() {
                     child: 
                     Flutter3DViewer(
                       onProgress: (progressValue) {
-                        print(progressValue);
                         if (progressValue == 1.0) {
                           setState(() {
                             isLoading = false;
                           });
                         }
-                        return SizedBox.shrink();
+                        return const SizedBox.shrink();
                       },
                       onLoad: (modelAddress) {
-                        print('Model address = $modelAddress');
                         setState(() {
                           isLoading = false;
                         });
                       },
                       onError: (error) {
-                        print('Error = $error');
                         setState(() {
                           isLoading = false;
                         });
@@ -147,7 +138,7 @@ Widget flutter3D() {
                       controller: objectController,
                     ),
                   ),
-                  SizedBox(height: 50,),
+                  const SizedBox(height: 50,),
                   Column(
                     children: [
                       TextButton(
@@ -156,7 +147,7 @@ Widget flutter3D() {
                   foregroundColor: Colors.white,
                   minimumSize: const Size(240, 60),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0), // Rectangle shape with rounded corners
+                    borderRadius: BorderRadius.circular(8.0), 
             ),
                 ),
                     onPressed:()async {
@@ -169,14 +160,14 @@ Widget flutter3D() {
                      } ,
                     child:const  Text('ScreenShot and Share',style: TextStyle(fontSize: 20, color: Colors.white),
                     )),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     TextButton(
                     style: TextButton.styleFrom(
                   backgroundColor: Colors.deepOrange,
                   foregroundColor: Colors.white,
                   minimumSize: const Size(240, 60),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0), // Rectangle shape with rounded corners
+                    borderRadius: BorderRadius.circular(8.0), 
             ),
                 ),
                     onPressed:(){
@@ -184,30 +175,12 @@ Widget flutter3D() {
                       },
                     child:const  Text('Animate Model',style: TextStyle(fontSize: 20, color: Colors.white),
                     )),
-                      // TextButton(onPressed: ()async {
-                      //   await screenshotController.capture().then((bytes){
-                      //     if(bytes!= null){
-                      //       saveImage(bytes);
-                      //       saveAndShare(bytes);
-                      //     }
-                      //   });
-                      // }, child: Text('Take a ScreenShot')),
-                      //  TextButton(onPressed: ()async {
-                      //   await screenshotController.captureFromWidget().then((bytes){
-                      //       saveImage(bytes);
-                      //       saveAndShare(bytes);
-                          
-                      //   });
-                      // }, child: Text('Take a ScreenShot widget')),
-                      // IconButton(onPressed: (){
-                      //   objectController.playAnimation(animationName: 'pointing forward');
-                      // }, icon: Icon(Icons.animation)),
                     ],
                   )
               ],
             ),
             if (isLoading)
-              Center(
+              const Center(
                 child: CircularProgressIndicator(
                   color: Colors.deepOrange,
                 ),

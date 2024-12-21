@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zen_tsyp_app/screens/clothing_screens/man_cothing_screen.dart';
 import 'package:zen_tsyp_app/screens/item_detials_screen.dart';
 
 class ClothingItem extends StatelessWidget {
@@ -27,8 +26,8 @@ class ClothingItem extends StatelessWidget {
         child: GridTile(
           footer: GridTileBar(title: Text(title,textAlign: TextAlign.center,),
           backgroundColor: Colors.black87,
-          leading: Text('${price} DT',style: TextStyle(color: Colors.deepOrange),),
-          trailing: Text('${size}',style: TextStyle(color: Colors.deepOrange),),
+          leading: Text('$price DT',style: const TextStyle(color: Colors.deepOrange),),
+          trailing: Text(size,style: const TextStyle(color: Colors.deepOrange),),
           ),
           
           child: 
