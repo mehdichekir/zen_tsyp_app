@@ -21,15 +21,7 @@ late FirebaseStorage storage;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  if (Firebase.apps.any((app) => app.name == 'Zen')) {
-    FirebaseApp zenApp = Firebase.app('Zen');
-    firestore = FirebaseFirestore.instanceFor(app: zenApp);
-    auth = FirebaseAuth.instanceFor(app: zenApp);
-    storage = FirebaseStorage.instanceFor(app: zenApp);
-  } else {
-    FirebaseApp zenApp = await Firebase.initializeApp(
-      name: 'Zen',
+  await Firebase.initializeApp(
       options: FirebaseOptions(
         apiKey: 'AIzaSyAIafS8lcMaUwgDmFncdmQqPHXp6BRYIwE',
     appId: '1:22686388340:android:faa6b0f5916bf95c170121',
@@ -38,11 +30,7 @@ void main() async {
     storageBucket: 'zen-challenge.firebasestorage.app',
       ),
     );
-
-    firestore = FirebaseFirestore.instanceFor(app: zenApp);
-    auth = FirebaseAuth.instanceFor(app: zenApp);
-    storage = FirebaseStorage.instanceFor(app: zenApp);
-  }
+  
 
   runApp(MyApp());
 }
@@ -60,7 +48,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  AuthWrapper(),
+      home:  ClothingScreen(),
       routes: {
         ItemDetialsScreen.routeName:(context)=>ItemDetialsScreen(),
         ManCothingScreen.routeName:(context)=>ManCothingScreen(),

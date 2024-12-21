@@ -29,6 +29,10 @@ dependencies:
   cloud_firestore: ^5.6.0
   firebase_auth: ^5.3.4
   firebase_storage: ^12.3.7
+  screenshot: ^3.0.0
+  image_gallery_saver: ^2.0.3
+  permission_handler: ^11.3.1
+  share_plus: ^10.1.3
 
 dev_dependencies:
   flutter_test:
@@ -40,10 +44,6 @@ flutter:
 
   # Add 3D asset
   assets:
-    - assets/humanslayer_4.obj
-    - assets/scene.gltf
-    - assets/woman.glb
-    - assets/wolf.glb
     - .env
     - assets/men-shirt.jpg
     - assets/man-1.jfif
@@ -63,6 +63,7 @@ flutter:
     - assets/woman-6.jpg
     - assets/woman-7.jpg
     - assets/woman-8.jfif
-    - assets/loading.lottie
     - assets/google-logo.png
     - assets/apple-logo.png
+    - assets/mehdi_chekir.glb
+    - assets/costume.jfif
