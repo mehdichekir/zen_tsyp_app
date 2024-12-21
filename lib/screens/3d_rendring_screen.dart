@@ -1,7 +1,7 @@
 
 import 'package:flutter_3d_controller/flutter_3d_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:zen_tsyp_app/screens/men_clothing_screen/man_cothing_screen.dart';
+import 'package:zen_tsyp_app/screens/clothing_screens/man_cothing_screen.dart';
 
 class ThreeDRenderdingScreen extends StatelessWidget {
   final String asset; 

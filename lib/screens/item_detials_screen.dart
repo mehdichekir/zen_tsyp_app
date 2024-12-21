@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zen_tsyp_app/screens/men_clothing_screen/man_cothing_screen.dart';
+import 'package:zen_tsyp_app/screens/clothing_screens/man_cothing_screen.dart';
 
 class ItemDetialsScreen extends StatelessWidget {
   static const routeName ='/item_detials_screen';
@@ -27,17 +27,9 @@ class ItemDetialsScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   Image.asset(
-                    passedData['asset']!, // Replace with your shoe image asset path
+                    passedData['asset']!, 
                     height: 200,
                   ),
-                  // Positioned(
-                  //   bottom: 10,
-                  //   left: 0,
-                  //   right: 0,
-                  //   child: Center(
-                  //     child: Icon(Icons.circle, size: 16, color: Colors.black),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -58,25 +50,6 @@ class ItemDetialsScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 8),
-            // Row(
-            //   children: [
-            //     Text(
-            //       'By',
-            //       style: TextStyle(color: Colors.grey, fontSize: 14),
-            //     ),
-            //     SizedBox(width: 4),
-            //     Text(
-            //       'Nike Official',
-            //       style: TextStyle(
-            //         color: Colors.black,
-            //         fontSize: 14,
-            //         fontWeight: FontWeight.bold,
-            //       ),
-            //     ),
-            //     SizedBox(width: 4),
-            //     Icon(Icons.verified, color: Colors.blue, size: 16),
-            //   ],
-            // ),
             SizedBox(height: 16),
             Text(
               'DESCRIPTION:',
@@ -88,53 +61,7 @@ class ItemDetialsScreen extends StatelessWidget {
               style: TextStyle(color: Colors.grey),
             ),
             SizedBox(height: 16),
-            // Text(
-            //   'SIZE:',
-            //   style: TextStyle(fontWeight: FontWeight.bold),
-            // ),
-            // SizedBox(height: 8),
-            // Row(
-            //   children: List.generate(5, (index) {
-            //     return Padding(
-            //       padding: const EdgeInsets.only(right: 8.0),
-            //       child: Chip(
-            //         label: Text(
-            //           '${40 + index}',
-            //           style: TextStyle(
-            //             color: index == 2 ? Colors.white : Colors.black,
-            //           ),
-            //         ),
-            //         backgroundColor:
-            //             index == 2 ? Colors.orange : Colors.grey[200],
-            //       ),
-            //     );
-            //   }),
-            // ),
             Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  passedData['price']!,
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    // primary: Colors.orange,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                  ),
-                  child: Text(
-                    'Add to Cart',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
       ),
