@@ -41,49 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBDUW5j9umLSzbyTBUwVhuCQxSKuemdleI',
-    appId: '1:714204708181:web:ee755c0ede3ea4d2ba83dc',
-    messagingSenderId: '714204708181',
-    projectId: 'zen-tsyp-app',
-    authDomain: 'zen-tsyp-app.firebaseapp.com',
-    storageBucket: 'zen-tsyp-app.firebasestorage.app',
-    measurementId: 'G-SFPM743JP9',
+    apiKey: 'AIzaSyAUYG5nG6lOPqzMlZkaRZgW2JJnER7CAsE',
+    appId: '1:22686388340:web:e89ab509f0a3a680170121',
+    messagingSenderId: '22686388340',
+    projectId: 'zen-challenge',
+    authDomain: 'zen-challenge.firebaseapp.com',
+    storageBucket: 'zen-challenge.firebasestorage.app',
+    measurementId: 'G-24DQKQXXRW',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD1bNs2IBcIjmKXfSYrnKfgNVQhq_gaysc',
-    appId: '1:714204708181:android:5313b8151b4fed5cba83dc',
-    messagingSenderId: '714204708181',
-    projectId: 'zen-tsyp-app',
-    storageBucket: 'zen-tsyp-app.firebasestorage.app',
+    apiKey: 'AIzaSyAIafS8lcMaUwgDmFncdmQqPHXp6BRYIwE',
+    appId: '1:22686388340:android:faa6b0f5916bf95c170121',
+    messagingSenderId: '22686388340',
+    projectId: 'zen-challenge',
+    storageBucket: 'zen-challenge.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDOmnDOYnpD74i6HJKLB0BggUHpnw-dmrE',
-    appId: '1:714204708181:ios:ad8e3ee68ab73910ba83dc',
-    messagingSenderId: '714204708181',
-    projectId: 'zen-tsyp-app',
-    storageBucket: 'zen-tsyp-app.firebasestorage.app',
+    apiKey: 'AIzaSyAi7HalGzA4vOUMHziaEACivubhToAIc74',
+    appId: '1:22686388340:ios:91c305c92c748cd5170121',
+    messagingSenderId: '22686388340',
+    projectId: 'zen-challenge',
+    storageBucket: 'zen-challenge.firebasestorage.app',
     iosBundleId: 'com.example.zenTsypApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDOmnDOYnpD74i6HJKLB0BggUHpnw-dmrE',
-    appId: '1:714204708181:ios:ad8e3ee68ab73910ba83dc',
-    messagingSenderId: '714204708181',
-    projectId: 'zen-tsyp-app',
-    storageBucket: 'zen-tsyp-app.firebasestorage.app',
+    apiKey: 'AIzaSyAi7HalGzA4vOUMHziaEACivubhToAIc74',
+    appId: '1:22686388340:ios:91c305c92c748cd5170121',
+    messagingSenderId: '22686388340',
+    projectId: 'zen-challenge',
+    storageBucket: 'zen-challenge.firebasestorage.app',
     iosBundleId: 'com.example.zenTsypApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBDUW5j9umLSzbyTBUwVhuCQxSKuemdleI',
-    appId: '1:714204708181:web:b52128993578a83aba83dc',
-    messagingSenderId: '714204708181',
-    projectId: 'zen-tsyp-app',
-    authDomain: 'zen-tsyp-app.firebaseapp.com',
-    storageBucket: 'zen-tsyp-app.firebasestorage.app',
-    measurementId: 'G-87GQZ5E3VN',
+    apiKey: 'AIzaSyAUYG5nG6lOPqzMlZkaRZgW2JJnER7CAsE',
+    appId: '1:22686388340:web:1d9b09a39808d562170121',
+    messagingSenderId: '22686388340',
+    projectId: 'zen-challenge',
+    authDomain: 'zen-challenge.firebaseapp.com',
+    storageBucket: 'zen-challenge.firebasestorage.app',
+    measurementId: 'G-XTWMGFVWD5',
   );
 
 }

@@ -1,10 +1,15 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:get/get.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
+import 'package:zen_tsyp_app/screens/3d_rendring_screen.dart';
 class FaceBodyValidationScreen extends StatefulWidget {
+  static const routeName= '/face_body_validation_screen';
   @override
   _FaceBodyValidationScreenState createState() =>
       _FaceBodyValidationScreenState();
@@ -58,7 +63,7 @@ class _FaceBodyValidationScreenState extends State<FaceBodyValidationScreen> {
   }
 
   // Start the face detection and capture process
-  Future<void> _startFaceDetection() async {
+  Future<File?> _startFaceDetection() async {
     // Continuously detect faces
     while (_controller.value.isInitialized) {
       await Future.delayed(
@@ -76,9 +81,10 @@ class _FaceBodyValidationScreenState extends State<FaceBodyValidationScreen> {
 
         // Show success dialog and proceed to body detection
         _showFaceValidationDialog(imageFile, "Face Detection", "Face");
-        break; // Stop face detection after success
+        return imageFile;
+        //break;  Stop face detection after success
       } else {
-        return;
+        return File('"C:/Users/LENOVO/SUPCOM/formation flutter/zen_tsyp_app/assets/error.jfif"');
       }
     }
   }
@@ -111,7 +117,7 @@ class _FaceBodyValidationScreenState extends State<FaceBodyValidationScreen> {
                         Navigator.of(context).pop(), // Close the dialog
                         _startBodyDetection(imageFile)
                       }
-                    : Get.back(); //hedhi hezou lel model screen
+                    : Navigator.of(context).pushReplacementNamed(ThreeDRenderdingScreen.routeName); //hedhi hezou lel model screen
               },
             ),
           ],
@@ -132,13 +138,14 @@ class _FaceBodyValidationScreenState extends State<FaceBodyValidationScreen> {
     return faces.isNotEmpty; // True if a face is detected
   }
 
-  Future<void> _startBodyDetection(File imageFile) async {
+  Future<File?> _startBodyDetection(File imageFile) async {
     bool isBodyValid = await _validateBody(imageFile);
     if (isBodyValid) {
       _showFaceValidationDialog(imageFile, "Body Detection", "Body");
+      return imageFile;
       // Proceed with your next steps (like loading 3D model or navigating)
     } else {
-      return;
+      return File('"C:/Users/LENOVO/SUPCOM/formation flutter/zen_tsyp_app/assets/error.jfif"');
     }
   }
 
@@ -162,18 +169,18 @@ class _FaceBodyValidationScreenState extends State<FaceBodyValidationScreen> {
           !_isLandmarkInsideBox(rightShoulder)) {
         upperBodyInsideBox = false;
       }
-      PoseLandmark? leftEar = pose.landmarks[PoseLandmarkType.leftEar];
-      PoseLandmark? rightEar = pose.landmarks[PoseLandmarkType.rightEar];
-      if (!_isLandmarkInsideBox(leftEar) || !_isLandmarkInsideBox(rightEar)) {
-        upperBodyInsideBox = false;
-      }
+      // PoseLandmark? leftEar = pose.landmarks[PoseLandmarkType.leftEar];
+      // PoseLandmark? rightEar = pose.landmarks[PoseLandmarkType.rightEar];
+      // if (!_isLandmarkInsideBox(leftEar) || !_isLandmarkInsideBox(rightEar)) {
+      //   upperBodyInsideBox = false;
+      // }
 
-      PoseLandmark? leftElbow = pose.landmarks[PoseLandmarkType.leftElbow];
-      PoseLandmark? rightElbow = pose.landmarks[PoseLandmarkType.rightElbow];
-      if (!_isLandmarkInsideBox(leftElbow) ||
-          !_isLandmarkInsideBox(rightElbow)) {
-        upperBodyInsideBox = false;
-      }
+      // PoseLandmark? leftElbow = pose.landmarks[PoseLandmarkType.leftElbow];
+      // PoseLandmark? rightElbow = pose.landmarks[PoseLandmarkType.rightElbow];
+      // if (!_isLandmarkInsideBox(leftElbow) ||
+      //     !_isLandmarkInsideBox(rightElbow)) {
+      //   upperBodyInsideBox = false;
+      // }
 
       // If both shoulders and optionally head are inside the bounding box, the upper body is aligned
       if (upperBodyInsideBox) {
@@ -199,6 +206,95 @@ class _FaceBodyValidationScreenState extends State<FaceBodyValidationScreen> {
         y >= boxTop &&
         y <= boxTop + boxHeight;
   }
+
+
+Future<String?> saveImagesToFolder(File image1, File image2) async {
+  try {
+    final appDirectory = await getApplicationDocumentsDirectory(); // App-specific directory
+    final appPath= appDirectory.path;
+    // Create the folder if it doesn't exist
+    final directory = Directory('{$appPath/images}');
+    if (!await directory.exists()) {
+      await directory.create(recursive: true);
+    }
+
+    // Move or copy the first image to the folder
+    final image1Path = '${directory.path}/${image1.uri.pathSegments.last}';
+    await image1.copy(image1Path);
+
+    // Move or copy the second image to the folder
+    final image2Path = '${directory.path}/${image2.uri.pathSegments.last}';
+    await image2.copy(image2Path);
+
+    print('Images saved to $appPath');
+    return directory.path;
+  } catch (e) {
+    print('Error saving images: $e');
+    return '';
+  }
+}
+
+
+Future<File?> uploadImagesToAzure(String folderPath) async {
+  try {
+    // Validate that the folder path exists and contains at least two images
+    final directory = Directory(folderPath);
+    if (!directory.existsSync()) {
+      throw Exception("The folder path does not exist.");
+    }
+
+    // Collect the image files from the folder
+    final imageFiles = directory
+        .listSync()
+        .whereType<File>()
+        .where((file) => ['.png', '.jpg', '.jpeg']
+            .contains(path.extension(file.path).toLowerCase()))
+        .toList();
+
+    if (imageFiles.length < 2) {
+      throw Exception("The folder must contain at least two images.");
+    }
+
+    final uri = Uri.parse("<YOUR_AZURE_ENDPOINT>");
+    final request = http.MultipartRequest("POST", uri);
+
+    // Attach images to the request
+    for (var i = 0; i < imageFiles.length; i++) {
+      request.files.add(
+        await http.MultipartFile.fromPath('file$i', imageFiles[i].path),
+      );
+    }
+
+    // Send the request to Azure
+    final response = await request.send();
+
+    if (response.statusCode == 200) {
+      final responseBody = await response.stream.bytesToString();
+      final decodedResponse = json.decode(responseBody);
+
+      // Assuming the response contains the URL or path of the OBJ file
+      final objFileUrl = decodedResponse['objFileUrl'];
+
+      // Download the OBJ file
+      final objResponse = await http.get(Uri.parse(objFileUrl));
+      if (objResponse.statusCode == 200) {
+        final objFilePath = path.join(folderPath, 'result.obj');
+        final objFile = File(objFilePath);
+        await objFile.writeAsBytes(objResponse.bodyBytes);
+        return objFile;
+      } else {
+        throw Exception("Failed to download the OBJ file.");
+      }
+    } else {
+      throw Exception("Failed to upload images: ${response.statusCode}");
+    }
+  } catch (e) {
+    debugPrint("Error uploading images to Azure: $e");
+    return null;
+  }
+}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -240,7 +336,7 @@ class _FaceBodyValidationScreenState extends State<FaceBodyValidationScreen> {
             child: _step == 'body'
                 ? Container(
                     width: boxWidth, // Adjust for upper body
-                    height: Get.height / 1.2, // Adjust for upper body
+                    height: 700, // Adjust for upper body
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                       border: Border.all(color: Colors.blue, width: 3),
@@ -267,4 +363,5 @@ class _FaceBodyValidationScreenState extends State<FaceBodyValidationScreen> {
       ),
     );
   }
+
 }

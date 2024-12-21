@@ -3,6 +3,7 @@ import 'package:zen_tsyp_app/screens/clothing_screens/man_cothing_screen.dart';
 import 'package:zen_tsyp_app/screens/clothing_screens/woman_clothing_screen.dart';
 
 class ClothingScreen extends StatelessWidget {
+  static const routeName = '/clothing_screen';
   const ClothingScreen({super.key});
 
   @override

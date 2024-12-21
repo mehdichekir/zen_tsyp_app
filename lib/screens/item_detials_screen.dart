@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zen_tsyp_app/screens/clothing_screens/man_cothing_screen.dart';
+import 'package:zen_tsyp_app/screens/face_body_validation_screen.dart';
 
 class ItemDetialsScreen extends StatelessWidget {
   static const routeName ='/item_detials_screen';
@@ -60,8 +61,28 @@ class ItemDetialsScreen extends StatelessWidget {
               passedData['desrciption']!,
               style: TextStyle(color: Colors.grey),
             ),
-            SizedBox(height: 16),
-            Spacer(),
+            SizedBox(height: 50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                    style: TextButton.styleFrom(
+                  backgroundColor: Colors.deepOrange,
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size(240, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0), // Rectangle shape with rounded corners
+            ),
+                ),
+                    onPressed: (){
+                        Navigator.of(context).pushReplacementNamed(FaceBodyValidationScreen.routeName);
+                      
+        
+                      },
+                    child:const  Text('Virtual Try On',style: TextStyle(fontSize: 20, color: Colors.white),
+                    ))
+              ],
+            )
           ],
         ),
       ),
